@@ -5,7 +5,7 @@ import { Context } from '../store/appContext';
 
 import '../../styles/demo.css';
 
-export const Demo = () => {
+export const AddContact = () => {
   const { store, actions } = useContext(Context);
 
   return (
@@ -34,7 +34,7 @@ export const Demo = () => {
                 className="btn btn-success"
                 onClick={() => actions.changeColor(index, 'orange')}
               >
-                Change Color
+                Change Color1
               </button>
             </li>
           );

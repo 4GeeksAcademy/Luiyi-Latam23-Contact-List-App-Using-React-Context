@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/home.css';
 
-export const Home = () => (
+export const Contact = () => (
   <div>
     <div className="text-center mt-5">
       <div className="card mb-3" style={{ maxWidth: '540px' }}>
