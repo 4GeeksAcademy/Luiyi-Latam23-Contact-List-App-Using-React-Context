@@ -6,10 +6,19 @@
 
 .navbar {
   background-color: rgb(63, 32, 32);
-  color: rgb(236, 18, 18);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.far {
+  /* font-weight: bold; */
+  font-size: larger;
+  margin-left: 8px;
 }
 
 .footer {
   background-color: rgb(63, 32, 32);
   color: antiquewhite;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
