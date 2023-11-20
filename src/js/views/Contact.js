@@ -4,7 +4,7 @@ import '../../styles/home.css';
 export const Contact = () => (
   <div>
     <div className="text-center mt-5">
-      <div className="card mb-3" style={{ maxWidth: '540px' }}>
+      <div className="card mb-3" style={{}}>
         <div className="row g-0">
           <div className="col-md-4">
             <img
@@ -30,7 +30,7 @@ export const Contact = () => (
       </div>
     </div>
     <div className="text-center mt-5">
-      <div className="card mb-3" style={{ maxWidth: '540px' }}>
+      <div className="card mb-3" style={{}}>
         <div className="row g-0">
           <div className="col-md-4">
             <img
