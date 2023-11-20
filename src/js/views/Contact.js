@@ -15,7 +15,9 @@ export const Contact = () => (
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">Name Last Name</h5>
+              <h5 className="card-title">
+                Name Last Name <i className="fas fa-pen-square"></i>
+              </h5>
               <p className="card-text">5555 Road Street</p>
               <p className="card-text">(506) 7777-7777</p>
               <p className="card-text">
