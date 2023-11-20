@@ -29,7 +29,7 @@ export const Contact = () => (
     <div className="text-center mt-5">
       <div className="card mb-3">
         <div className="row g-0">
-          <div className="col-md-4">
+          <div className="col-md-4 d-flex justify-content-center align-items-center">
             <img
               src="https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200"
               className="cardImage"
