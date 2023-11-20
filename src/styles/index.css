@@ -45,4 +45,7 @@
     flex-direction: column-reverse;
     align-items: center;
   }
+  .col-md-4 {
+    margin-top: 8px;
+  }
 }
