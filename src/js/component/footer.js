@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export const Footer = () => (
-  <footer className="footer mt-3 py-3 text-center">
+  <footer className="footer mb-3 py-3 text-center">
     <p>
       Contact-List App <strong>&copy; 2023</strong>{' '}
     </p>
