@@ -11,9 +11,20 @@
 }
 
 .far {
-  /* font-weight: bold; */
-  font-size: larger;
+  font-size: 1.5rem;
   margin-left: 8px;
+}
+
+.card-edit-trash-icons-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.edit-delete-icons {
+  font-size: 2.5rem;
+  padding: 0.5em;
 }
 
 .cardImage {
@@ -27,4 +38,11 @@
   color: antiquewhite;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+}
+
+@media (max-width: 780px) {
+  .card-edit-trash-icons-container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
