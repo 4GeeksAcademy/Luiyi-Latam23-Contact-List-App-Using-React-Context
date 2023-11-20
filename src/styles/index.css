@@ -1,3 +1,9 @@
+.container {
+  width: 70%;
+  max-width: 600px;
+  min-width: 400px;
+}
+
 .navbar {
   background-color: rgb(63, 32, 32);
   color: rgb(236, 18, 18);
