@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ScrollToTop from './component/scrollToTop';
 
-import { Contact } from './views/Contact';
+import { Contacts } from './views/Contacts';
 import { AddContact } from './views/AddContact';
 import { Single } from './views/single';
 import injectContext from './store/appContext';
@@ -22,7 +22,7 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Contact />} />
+            <Route path="/" element={<Contacts />} />
             <Route path="/addcontact" element={<AddContact />} />
             <Route path="/single/:theid" element={<Single />} />
             <Route path="*" element={<h1>Not found!</h1>} />
