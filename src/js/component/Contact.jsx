@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const Contact = () => {
   return (
     <div className="text-center mt-5">
@@ -16,22 +18,22 @@ export const Contact = () => {
                 <div>
                   <span className="edit-delete-icons">
                     <i className="fas fa-pen-square p-2"></i>
-                    <i class="fa fa-trash p-2"></i>
+                    <i className="fa fa-trash p-2"></i>
                   </span>
                 </div>
                 <div>
                   <h5 className="card-title">Name Last Name</h5>
                   <p className="card-text">
-                    <i class="fas fa-map-marker m-1"></i>
+                    <i className="fas fa-map-marker m-1"></i>
                     5555 Road Street
                   </p>
                   <p className="card-text">
-                    <i class="fa fa-phone m-1"></i>(506) 7777-7777
+                    <i className="fa fa-phone m-1"></i>(506) 7777-7777
                   </p>
                   <p className="card-text">
                     <small className="text-muted">
                       {' '}
-                      <i class="fa fa-envelope m-1"></i>test@mail.com
+                      <i className="fa fa-envelope m-1"></i>test@mail.com
                     </small>
                   </p>
                 </div>
