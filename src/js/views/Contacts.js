@@ -1,18 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/home.css';
 import { Contact } from '../component/Contact.jsx';
 
 export const Contacts = () => {
   const [contacts, setContacts] = useState([]);
-  return contacts.map((item) => {
-    <Contact
-      fullName={'Luiyi Salazar'}
-      address={'555 Road Street'}
-      phone={'(506) 7777-7777'}
-      email={'luiyi_salazar@gmail.com'}
-      imgUrl={
-        'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200'
+  const getcontacts = async () => {
+    try {
+      const response = await fetch(
+        'https://playground.4geeks.com/apis/fake/contact/'
+      );
+      if (response.status !== 200) {
+        throw new Error('Error, status code: ' + response.status);
       }
-    />;
-  });
+      const body = await response.json();
+      return body;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleContacts = async () => {
+    const contacts = await getcontacts();
+    setContacts(contacts);
+  };
+
+  useEffect(() => {
+    handleContacts();
+  }, []);
+
+  return (
+    <div>
+      {contacts.map((item, index) => (
+        <Contact
+          key={index}
+          fullName={item.full_name}
+          address={'555 Road Street'}
+          phone={'(506) 7777-7777'}
+          email={'luiyi_salazar@gmail.com'}
+          imgUrl={
+            'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200'
+          }
+        />
+      ))}
+    </div>
+  );
 };
