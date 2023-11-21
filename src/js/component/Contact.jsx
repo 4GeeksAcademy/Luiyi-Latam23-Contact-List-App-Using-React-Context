@@ -1,16 +1,12 @@
 import React from 'react';
 
-export const Contact = () => {
+export const Contact = ({ fullName, address, phone, email, imgUrl }) => {
   return (
     <div className="text-center mt-5">
       <div className="card mb-3">
         <div className="row g-0">
           <div className="col-md-4 d-flex justify-content-center align-items-center">
-            <img
-              src="https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              className="cardImage"
-              alt="..."
-            />
+            <img src={imgUrl} className="cardImage" alt="..." />
           </div>
           <div className="col-md-8">
             <div className="card-body">
@@ -22,18 +18,20 @@ export const Contact = () => {
                   </span>
                 </div>
                 <div>
-                  <h5 className="card-title">Name Last Name</h5>
+                  <h5 className="card-title">{fullName}</h5>
                   <p className="card-text">
                     <i className="fas fa-map-marker m-1"></i>
-                    5555 Road Street
+                    {address}
                   </p>
                   <p className="card-text">
-                    <i className="fa fa-phone m-1"></i>(506) 7777-7777
+                    <i className="fa fa-phone m-1"></i>
+                    {phone}
                   </p>
                   <p className="card-text">
                     <small className="text-muted">
                       {' '}
-                      <i className="fa fa-envelope m-1"></i>test@mail.com
+                      <i className="fa fa-envelope m-1"></i>
+                      {email}
                     </small>
                   </p>
                 </div>
