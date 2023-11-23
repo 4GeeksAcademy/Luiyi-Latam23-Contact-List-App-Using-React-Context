@@ -7,7 +7,7 @@ export const Contacts = () => {
   const getcontacts = async () => {
     try {
       const response = await fetch(
-        'https://playground.4geeks.com/apis/fake/contact/agenda/my-contacts-luiyi'
+        'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda'
       );
       if (response.status !== 200) {
         throw new Error('Error, status code: ' + response.status);

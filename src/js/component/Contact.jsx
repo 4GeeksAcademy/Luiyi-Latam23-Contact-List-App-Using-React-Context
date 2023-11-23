@@ -1,6 +1,14 @@
 import React from 'react';
 
 export const Contact = ({ fullName, address, phone, email, imgUrl }) => {
+  const handleEditContactBtn = () => {
+    console.log('You clicked me!!');
+  };
+
+  const handleDeleteContactBtn = () => {
+    console.log('You clicked me!!');
+  };
+
   return (
     <div className="text-center mt-5">
       <div className="card mb-3">
@@ -13,8 +21,14 @@ export const Contact = ({ fullName, address, phone, email, imgUrl }) => {
               <div className="card-edit-trash-icons-container">
                 <div>
                   <span className="edit-delete-icons">
-                    <i className="fas fa-pen-square p-2"></i>
-                    <i className="fa fa-trash p-2"></i>
+                    <i
+                      className="fas fa-pen-square p-2"
+                      onClick={handleEditContactBtn}
+                    ></i>
+                    <i
+                      className="fa fa-trash p-2"
+                      onClick={handleDeleteContactBtn}
+                    ></i>
                   </span>
                 </div>
                 <div>

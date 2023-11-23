@@ -34,7 +34,7 @@ export const AddContact = () => {
   };
 
   const handleSaveOnClickBtn = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log('You clicked me!!');
   };
 
