@@ -15,6 +15,12 @@
   margin-left: 8px;
 }
 
+.cardImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
 .card-edit-trash-icons-container {
   display: flex;
   flex-direction: row-reverse;
@@ -24,12 +30,6 @@
 
 .edit-delete-icons {
   font-size: 2.5rem;
-}
-
-.cardImage {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
 }
 
 .footer {

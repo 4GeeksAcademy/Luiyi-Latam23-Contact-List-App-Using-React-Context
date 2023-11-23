@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const Contact = ({
   fullName,
@@ -8,12 +8,23 @@ export const Contact = ({
   imgUrl,
   onDelete,
 }) => {
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
   const handleEditContactBtn = () => {
     console.log('You clicked me!!');
   };
 
   const handleDeleteContactBtn = () => {
+    setShowDeleteConfirmation(true);
+  };
+
+  const handleConfirmDelete = () => {
     onDelete();
+    setShowDeleteConfirmation(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
   };
 
   return (
@@ -38,6 +49,23 @@ export const Contact = ({
                     ></i>
                   </span>
                 </div>
+                {showDeleteConfirmation && (
+                  <div className="delete-confirmation-box">
+                    <h3>Are you sure you want to delete the contact?</h3>
+                    <button
+                      className="btn btn-danger"
+                      onClick={handleConfirmDelete}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={handleCancelDelete}
+                    >
+                      No
+                    </button>
+                  </div>
+                )}
                 <div>
                   <h5 className="card-title">{fullName}</h5>
                   <p className="card-text">
