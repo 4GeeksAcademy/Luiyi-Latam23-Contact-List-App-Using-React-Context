@@ -34,9 +34,9 @@ export const Contacts = () => {
         <Contact
           key={item.id}
           fullName={item.full_name}
-          address={'555 Road Street'}
-          phone={'(506) 7777-7777'}
-          email={'luiyi_salazar@gmail.com'}
+          address={item.address}
+          phone={item.phone}
+          email={item.email}
           imgUrl={
             'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200'
           }
