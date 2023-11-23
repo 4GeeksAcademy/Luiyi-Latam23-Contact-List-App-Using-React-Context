@@ -7,7 +7,7 @@ export const Contacts = () => {
   const getcontacts = async () => {
     try {
       const response = await fetch(
-        'https://playground.4geeks.com/apis/fake/contact/'
+        'https://playground.4geeks.com/apis/fake/contact/agenda/my-contacts-luiyi'
       );
       if (response.status !== 200) {
         throw new Error('Error, status code: ' + response.status);
@@ -30,9 +30,9 @@ export const Contacts = () => {
 
   return (
     <div>
-      {contacts.map((item, index) => (
+      {contacts.map((item) => (
         <Contact
-          key={index}
+          key={item.id}
           fullName={item.full_name}
           address={'555 Road Street'}
           phone={'(506) 7777-7777'}
