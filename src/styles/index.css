@@ -18,13 +18,12 @@
 .card-edit-trash-icons-container {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-self: left;
   align-items: center;
 }
 
 .edit-delete-icons {
   font-size: 2.5rem;
-  padding: 0.5em;
 }
 
 .cardImage {
