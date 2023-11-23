@@ -1,12 +1,19 @@
 import React from 'react';
 
-export const Contact = ({ fullName, address, phone, email, imgUrl }) => {
+export const Contact = ({
+  fullName,
+  address,
+  phone,
+  email,
+  imgUrl,
+  onDelete,
+}) => {
   const handleEditContactBtn = () => {
     console.log('You clicked me!!');
   };
 
   const handleDeleteContactBtn = () => {
-    console.log('You clicked me!!');
+    onDelete();
   };
 
   return (
