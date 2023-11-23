@@ -8,6 +8,36 @@ import '../../styles/demo.css';
 export const AddContact = () => {
   const { store, actions } = useContext(Context);
 
+  const handleFirstNameInput = (e) => {
+    const inputFirstNameValue = e.target.value;
+    console.log('You typed:', inputFirstNameValue);
+  };
+
+  const handleLastNameInput = (e) => {
+    const inputLastNameValue = e.target.value;
+    console.log('You typed:', inputLastNameValue);
+  };
+
+  const handleEmailInput = (e) => {
+    const inputEmailValue = e.target.value;
+    console.log('You typed:', inputEmailValue);
+  };
+
+  const handleAddressInput = (e) => {
+    const inputAddressValue = e.target.value;
+    console.log('You typed:', inputAddressValue);
+  };
+
+  const handlePhoneNumberInput = (e) => {
+    const inputPhoneNumberValue = e.target.value;
+    console.log('You typed:', inputPhoneNumberValue);
+  };
+
+  const handleSaveOnClickBtn = (e) => {
+    // e.preventDefault();
+    console.log('You clicked me!!');
+  };
+
   return (
     <div className="container bg-light">
       <form className="row g-3">
@@ -19,7 +49,9 @@ export const AddContact = () => {
             type="text"
             className="form-control"
             placeholder="First name"
-            id="fistName"
+            id="firstName"
+            onChange={handleFirstNameInput}
+            required
           />
         </div>
         <div className="col-md-6">
@@ -31,6 +63,8 @@ export const AddContact = () => {
             className="form-control"
             placeholder="Last name"
             id="lastName"
+            onChange={handleLastNameInput}
+            required
           />
         </div>
         <div className="col-md-12">
@@ -42,6 +76,8 @@ export const AddContact = () => {
             className="form-control"
             id="inputEmail4"
             placeholder="Enter email"
+            onChange={handleEmailInput}
+            required
           />
         </div>
 
@@ -54,6 +90,8 @@ export const AddContact = () => {
             className="form-control"
             id="inputAddress"
             placeholder="Enter address"
+            onChange={handleAddressInput}
+            required
           />
         </div>
 
@@ -66,11 +104,17 @@ export const AddContact = () => {
             className="form-control"
             id="inputPhone"
             placeholder="Enter your phone number"
+            onChange={handlePhoneNumberInput}
+            required
           />
         </div>
 
         <div className="col-12">
-          <button type="submit" className="btn btn-success w-100">
+          <button
+            type="submit"
+            className="btn btn-success w-100"
+            onClick={handleSaveOnClickBtn}
+          >
             Save contact
           </button>
         </div>
