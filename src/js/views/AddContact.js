@@ -34,7 +34,7 @@ export const AddContact = () => {
     setPhone(e.target.value);
   };
 
-  const handleSaveOnClickBtn = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
     if (!firstName || !lastName || !email || !address || !phone) {
@@ -57,7 +57,7 @@ export const AddContact = () => {
 
   return (
     <div className="container bg-light">
-      <form className="row g-3">
+      <form className="row g-3" onSubmit={handleFormSubmit}>
         <div className="col-md-6">
           <label htmlFor="inputPassword4" className="form-label">
             Name
@@ -127,11 +127,7 @@ export const AddContact = () => {
         </div>
 
         <div className="col-12">
-          <button
-            type="submit"
-            className="btn btn-success w-100"
-            onClick={handleSaveOnClickBtn}
-          >
+          <button type="submit" className="btn btn-success w-100">
             Save contact
           </button>
         </div>

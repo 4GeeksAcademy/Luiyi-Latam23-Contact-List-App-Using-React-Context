@@ -8,7 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       loadSomeData: () => {},
 
-      AddContact: (newContact) => {
+      addContact: (newContact) => {
         const store = getStore();
         const updatedContacts = [...store.contacts, newContact];
         setStore({ contacts: updatedContacts });
