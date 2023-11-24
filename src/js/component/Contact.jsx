@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
 export const Contact = ({
   fullName,
@@ -49,23 +50,6 @@ export const Contact = ({
                     ></i>
                   </span>
                 </div>
-                {showDeleteConfirmation && (
-                  <div className="delete-confirmation-box">
-                    <h3>Are you sure you want to delete the contact?</h3>
-                    <button
-                      className="btn btn-danger"
-                      onClick={handleConfirmDelete}
-                    >
-                      Yes
-                    </button>
-                    <button
-                      className="btn btn-secondary"
-                      onClick={handleCancelDelete}
-                    >
-                      No
-                    </button>
-                  </div>
-                )}
                 <div>
                   <h5 className="card-title">{fullName}</h5>
                   <p className="card-text">
@@ -89,6 +73,23 @@ export const Contact = ({
           </div>
         </div>
       </div>
+
+      <Modal show={showDeleteConfirmation} onHide={handleCancelDelete}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Are you sure you want to delete the contact?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCancelDelete}>
+            No
+          </Button>
+          <Button variant="danger" onClick={handleConfirmDelete}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

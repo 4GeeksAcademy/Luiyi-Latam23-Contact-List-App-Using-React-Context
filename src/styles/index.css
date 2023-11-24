@@ -32,6 +32,18 @@
   font-size: 2.5rem;
 }
 
+.delete-confirmation-box {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.delete-confirmation-box button {
+  margin-right: 10px;
+}
+
 .footer {
   background-color: rgb(63, 32, 32);
   color: antiquewhite;
