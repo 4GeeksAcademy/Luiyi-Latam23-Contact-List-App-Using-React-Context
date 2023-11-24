@@ -8,34 +8,51 @@ import '../../styles/demo.css';
 export const AddContact = () => {
   const { store, actions } = useContext(Context);
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+
   const handleFirstNameInput = (e) => {
-    const inputFirstNameValue = e.target.value;
-    console.log('You typed:', inputFirstNameValue);
+    setFirstName(e.target.value);
   };
 
   const handleLastNameInput = (e) => {
-    const inputLastNameValue = e.target.value;
-    console.log('You typed:', inputLastNameValue);
+    setLastName(e.target.value);
   };
 
   const handleEmailInput = (e) => {
-    const inputEmailValue = e.target.value;
-    console.log('You typed:', inputEmailValue);
+    setEmail(e.target.value);
   };
 
   const handleAddressInput = (e) => {
-    const inputAddressValue = e.target.value;
-    console.log('You typed:', inputAddressValue);
+    setAddress(e.target.value);
   };
 
   const handlePhoneNumberInput = (e) => {
-    const inputPhoneNumberValue = e.target.value;
-    console.log('You typed:', inputPhoneNumberValue);
+    setPhone(e.target.value);
   };
 
   const handleSaveOnClickBtn = (e) => {
     e.preventDefault();
-    console.log('You clicked me!!');
+
+    if (!firstName || !lastName || !email || !address || !phone) {
+      console.log('Please fill in all the fields.');
+      return;
+    }
+
+    const newContact = {
+      fullName: `${firstName} ${lastName}`,
+      address,
+      email,
+      phone,
+      imgUrl:
+        'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    };
+
+    console.log('Saving contact:', newContact);
+    actions.addContact(newContact);
   };
 
   return (
