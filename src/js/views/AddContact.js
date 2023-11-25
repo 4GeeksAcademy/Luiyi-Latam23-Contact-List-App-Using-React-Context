@@ -18,6 +18,8 @@ export const AddContact = () => {
     phone: '',
   });
 
+  const [contacts, setContacts] = useState([]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -26,7 +28,7 @@ export const AddContact = () => {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -47,75 +49,80 @@ export const AddContact = () => {
       phone: formData.phone,
       imgUrl:
         'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      agenda_slug: 'luiyi-latam23-agenda',
     };
 
     console.log('Saving contact:', newContact);
-    actions.addContact(newContact);
 
-    const saveContact = async () => {
-      try {
-        if (isEditMode) {
-          const response = await fetch(
-            'https://playground.4geeks.com/apis/fake/contact/' + contact_id,
-            {
-              method: 'Put',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                fullName: `${formData.firstName} ${formData.lastName}`,
-                address: formData.address,
-                email: formData.email,
-                phone: formData.phone,
-                imgUrl:
-                  'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
-              }),
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error('Error updating contact');
+    try {
+      if (isEditMode) {
+        const response = await fetch(
+          'https://playground.4geeks.com/apis/fake/contact/' + contact_id,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newContact),
           }
-        } else {
-          const response = await fetch(
-            'https://playground.4geeks.com/apis/fake/contact/',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                fullName: `${formData.firstName} ${formData.lastName}`,
-                address: formData.address,
-                email: formData.email,
-                phone: formData.phone,
-                imgUrl:
-                  'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
-              }),
-            }
-          );
+        );
 
-          if (!response.ok) {
-            throw new Error('Error adding new contact');
-          }
+        if (!response.ok) {
+          throw new Error('Error updating contact');
         }
+      } else {
+        const response = await fetch(
+          'https://playground.4geeks.com/apis/fake/contact/',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newContact),
+          }
+        );
 
+        if (!response.ok) {
+          throw new Error('Error adding new contact');
+        }
+      }
+
+      const updatedContacts = await actions.addContact(newContact);
+
+      if (updatedContacts) {
         const contactsData = await getContacts();
         setContacts(contactsData);
-
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          address: '',
-          phone: '',
-        });
-      } catch (error) {
-        console.log(error);
+      } else {
+        console.log('Error updating contacts list');
       }
-    };
 
-    saveContact();
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        address: '',
+        phone: '',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getContacts = async () => {
+    try {
+      const response = await fetch(
+        'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda'
+      );
+
+      if (!response.ok) {
+        throw new Error('Error fetching contacts');
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
