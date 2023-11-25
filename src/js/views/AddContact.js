@@ -8,51 +8,57 @@ import '../../styles/demo.css';
 export const AddContact = () => {
   const { store, actions } = useContext(Context);
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('');
+  const [isEditMode, setEditMode] = useState(false);
 
-  const handleFirstNameInput = (e) => {
-    setFirstName(e.target.value);
-  };
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
+    phone: '',
+  });
 
-  const handleLastNameInput = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const handleEmailInput = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleAddressInput = (e) => {
-    setAddress(e.target.value);
-  };
-
-  const handlePhoneNumberInput = (e) => {
-    setPhone(e.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !address || !phone) {
+    if (
+      !formData.firstName.trim() ||
+      !formData.lastName.trim() ||
+      !formData.email.trim() ||
+      !formData.address.trim() ||
+      !formData.phone.trim()
+    ) {
       console.log('Please fill in all the fields.');
       return;
     }
 
     const newContact = {
-      fullName: `${firstName} ${lastName}`,
-      address,
-      email,
-      phone,
+      fullName: `${formData.firstName} ${formData.lastName}`,
+      address: formData.address,
+      email: formData.email,
+      phone: formData.phone,
       imgUrl:
         'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
     };
 
     console.log('Saving contact:', newContact);
     actions.addContact(newContact);
+
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      address: '',
+      phone: '',
+    });
   };
 
   return (
@@ -67,7 +73,9 @@ export const AddContact = () => {
             className="form-control"
             placeholder="First name"
             id="firstName"
-            onChange={handleFirstNameInput}
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -80,7 +88,9 @@ export const AddContact = () => {
             className="form-control"
             placeholder="Last name"
             id="lastName"
-            onChange={handleLastNameInput}
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -91,9 +101,11 @@ export const AddContact = () => {
           <input
             type="email"
             className="form-control"
-            id="inputEmail4"
             placeholder="Enter email"
-            onChange={handleEmailInput}
+            id="inputEmail4"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -105,9 +117,11 @@ export const AddContact = () => {
           <input
             type="text"
             className="form-control"
-            id="inputAddress"
             placeholder="Enter address"
-            onChange={handleAddressInput}
+            id="inputAddress"
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -121,7 +135,9 @@ export const AddContact = () => {
             className="form-control"
             id="inputPhone"
             placeholder="Enter your phone number"
-            onChange={handlePhoneNumberInput}
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
             required
           />
         </div>
