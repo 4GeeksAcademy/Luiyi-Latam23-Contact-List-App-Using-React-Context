@@ -55,24 +55,11 @@ export const AddContact = () => {
     console.log('Saving contact:', newContact);
 
     try {
-      if (isEditMode) {
-        const response = await fetch(
-          'https://playground.4geeks.com/apis/fake/contact/' + contact_id,
-          {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newContact),
-          }
-        );
+      let updatedContacts;
 
-        if (!response.ok) {
-          throw new Error('Error updating contact');
-        }
-      } else {
+      if (store.contacts.length === 0) {
         const response = await fetch(
-          'https://playground.4geeks.com/apis/fake/contact/',
+          'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
           {
             method: 'POST',
             headers: {
@@ -85,16 +72,27 @@ export const AddContact = () => {
         if (!response.ok) {
           throw new Error('Error adding new contact');
         }
-      }
 
-      const updatedContacts = await actions.addContact(newContact);
-
-      if (updatedContacts) {
-        const contactsData = await getContacts();
-        setContacts(contactsData);
+        updatedContacts = await response.json();
       } else {
-        console.log('Error updating contacts list');
+        const response = await fetch(
+          'https://playground.4geeks.com/apis/fake/contact/' + contact_id,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newContact),
+          }
+        );
+        if (!response.ok) {
+          throw new Error('Error updating contact');
+        }
+        const contactsData = await getContacts();
+        updatedContacts = contactsData;
       }
+
+      setContacts(updatedContacts);
 
       setFormData({
         firstName: '',
