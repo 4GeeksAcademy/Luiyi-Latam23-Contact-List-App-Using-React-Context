@@ -52,13 +52,70 @@ export const AddContact = () => {
     console.log('Saving contact:', newContact);
     actions.addContact(newContact);
 
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      address: '',
-      phone: '',
-    });
+    const saveContact = async () => {
+      try {
+        if (isEditMode) {
+          const response = await fetch(
+            'https://playground.4geeks.com/apis/fake/contact/' + contact_id,
+            {
+              method: 'Put',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                fullName: `${formData.firstName} ${formData.lastName}`,
+                address: formData.address,
+                email: formData.email,
+                phone: formData.phone,
+                imgUrl:
+                  'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error('Error updating contact');
+          }
+        } else {
+          const response = await fetch(
+            'https://playground.4geeks.com/apis/fake/contact/',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                fullName: `${formData.firstName} ${formData.lastName}`,
+                address: formData.address,
+                email: formData.email,
+                phone: formData.phone,
+                imgUrl:
+                  'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error('Error adding new contact');
+          }
+        }
+
+        const contactsData = await getContacts();
+        setContacts(contactsData);
+
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          address: '',
+          phone: '',
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    saveContact();
   };
 
   return (
