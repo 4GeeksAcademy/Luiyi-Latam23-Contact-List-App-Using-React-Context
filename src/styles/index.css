@@ -30,6 +30,7 @@
 
 .edit-delete-icons {
   font-size: 2.5rem;
+  cursor: pointer;
 }
 
 .delete-confirmation-box {
