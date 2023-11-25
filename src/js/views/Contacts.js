@@ -46,6 +46,7 @@ export const Contacts = () => {
           imgUrl={
             'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200'
           }
+          id={item.id}
           onDelete={() => handleDeleteContact(item.id)}
         />
       ))}

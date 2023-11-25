@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export const Contact = ({
   fullName,
@@ -8,10 +9,13 @@ export const Contact = ({
   email,
   imgUrl,
   onDelete,
+  id,
 }) => {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const navigate = useNavigate();
 
   const handleEditContactBtn = () => {
+    navigate(`/update-contact/${id}`);
     console.log('You clicked me!!');
   };
 
