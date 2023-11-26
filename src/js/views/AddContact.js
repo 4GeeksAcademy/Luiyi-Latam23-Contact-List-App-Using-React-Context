@@ -44,8 +44,9 @@ export const AddContact = () => {
 
     const newContact = {
       fullName: `${formData.firstName} ${formData.lastName}`,
-      address: formData.address,
       email: formData.email,
+      agenda_slug: 'luiyi-latam23/agenda',
+      address: formData.address,
       phone: formData.phone,
       imgUrl:
         'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
