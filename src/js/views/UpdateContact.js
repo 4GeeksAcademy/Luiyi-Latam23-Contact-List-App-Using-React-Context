@@ -7,20 +7,16 @@ import '../../styles/demo.css';
 
 export const UpdateContact = () => {
   const { store, actions } = useContext(Context);
-  const [contactDetails, setContactDetails] = useState();
-
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('');
+  const [contactDetails, setContactDetails] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
+    phone: '',
+  });
 
   const params = useParams();
   console.log(params);
-
-  const handleFirstNameInput = (e) => {
-    setFirstName(e.target.value);
-  };
 
   useEffect(() => {
     const fetchContactDetails = async () => {
@@ -44,43 +40,42 @@ export const UpdateContact = () => {
     };
 
     fetchContactDetails();
-  }, []);
-
-  const handleLastNameInput = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const handleEmailInput = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleAddressInput = (e) => {
-    setAddress(e.target.value);
-  };
-
-  const handlePhoneNumberInput = (e) => {
-    setPhone(e.target.value);
-  };
+  }, [params.id]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !address || !phone) {
+    if (
+      !contactDetails ||
+      !contactDetails.firstName ||
+      !contactDetails.lastName ||
+      !contactDetails.email ||
+      !contactDetails.address ||
+      !contactDetails.phone
+    ) {
       console.log('Please fill in all the fields.');
       return;
     }
 
     const newContact = {
-      fullName: `${firstName} ${lastName}`,
-      address,
-      email,
-      phone,
+      fullName: `${contactDetails.firstName} ${contactDetails.lastName}`,
+      address: contactDetails.address,
+      email: contactDetails.email,
+      phone: contactDetails.phone,
       imgUrl:
         'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
     };
 
     console.log('Saving contact:', newContact);
     actions.addContact(newContact);
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setContactDetails((prevDetails) => ({
+      ...prevDetails,
+      [id]: value,
+    }));
   };
 
   return (
@@ -95,7 +90,8 @@ export const UpdateContact = () => {
             className="form-control"
             placeholder="First name"
             id="firstName"
-            onChange={handleFirstNameInput}
+            value={contactDetails ? contactDetails.firstName : ''}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -108,7 +104,8 @@ export const UpdateContact = () => {
             className="form-control"
             placeholder="Last name"
             id="lastName"
-            onChange={handleLastNameInput}
+            value={contactDetails ? contactDetails.lastName : ''}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -120,8 +117,9 @@ export const UpdateContact = () => {
             type="email"
             className="form-control"
             id="inputEmail4"
+            value={contactDetails ? contactDetails.email : ''}
             placeholder="Enter email"
-            onChange={handleEmailInput}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -134,8 +132,9 @@ export const UpdateContact = () => {
             type="text"
             className="form-control"
             id="inputAddress"
+            value={contactDetails ? contactDetails.address : ''}
             placeholder="Enter address"
-            onChange={handleAddressInput}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -148,8 +147,9 @@ export const UpdateContact = () => {
             type="tel"
             className="form-control"
             id="inputPhone"
+            value={contactDetails ? contactDetails.phone : ''}
             placeholder="Enter your phone number"
-            onChange={handlePhoneNumberInput}
+            onChange={handleInputChange}
             required
           />
         </div>
