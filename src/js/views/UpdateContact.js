@@ -194,7 +194,7 @@ export const UpdateContact = () => {
       }
       <br /> */}
       <Link to="/">
-        <button className="btn btn-primary">Back home</button>
+        <button className="btn btn-link">Back to Contact List</button>
       </Link>
     </div>
   );
