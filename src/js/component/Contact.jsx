@@ -46,7 +46,7 @@ export const Contact = ({
   const handleConfirmDelete = async () => {
     try {
       const response = await fetch(
-        `https://playground.4geeks.com/apis/fake/contact/`,
+        `https://playground.4geeks.com/apis/fake/contact/${id}`,
         {
           method: 'DELETE',
         }
@@ -59,7 +59,7 @@ export const Contact = ({
 
         setShowDeleteConfirmation(false);
       } else {
-        console.error('Failed to delete contact from API');
+        console.error('Failed to delete contact from API', response.status);
       }
     } catch (error) {
       console.error('Error deleting contact:', error);
