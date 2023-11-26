@@ -43,9 +43,8 @@ export const AddContact = () => {
     }
 
     const newContact = {
-      fullName: `${formData.firstName} ${formData.lastName}`,
+      full_Name: `${formData.firstName} ${formData.lastName}`,
       email: formData.email,
-      agenda_slug: 'luiyi-latam23/agenda',
       address: formData.address,
       phone: formData.phone,
       imgUrl:
@@ -77,7 +76,7 @@ export const AddContact = () => {
         updatedContacts = await response.json();
       } else {
         const response = await fetch(
-          'https://playground.4geeks.com/apis/fake/contact/' + contact_id,
+          'https://playground.4geeks.com/apis/fake/contact/agenda/',
           {
             method: 'PUT',
             headers: {
@@ -110,7 +109,7 @@ export const AddContact = () => {
   const getContacts = async () => {
     try {
       const response = await fetch(
-        'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda'
+        'https://playground.4geeks.com/apis/fake/contact/agenda/'
       );
 
       if (!response.ok) {

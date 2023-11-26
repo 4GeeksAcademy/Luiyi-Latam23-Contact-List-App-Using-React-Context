@@ -40,7 +40,7 @@ export const UpdateContact = () => {
     };
 
     fetchContactDetails();
-  }, [params.id]);
+  }, []);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -57,17 +57,18 @@ export const UpdateContact = () => {
       return;
     }
 
-    const newContact = {
-      fullName: `${contactDetails.firstName} ${contactDetails.lastName}`,
+    const updatedContact = {
+      full_Name: `${contactDetails.firstName} ${contactDetails.lastName}`,
       address: contactDetails.address,
       email: contactDetails.email,
       phone: contactDetails.phone,
       imgUrl:
         'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      agenda_slug: 'luiyi-latam23-agenda',
     };
 
-    console.log('Saving contact:', newContact);
-    actions.addContact(newContact);
+    console.log('Saving updated contact:', updatedContact);
+    actions.addContact(updatedContact);
   };
 
   const handleInputChange = (e) => {

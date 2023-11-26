@@ -26,7 +26,7 @@ export const Contact = ({
   const updateContactList = async () => {
     try {
       const response = await fetch(
-        'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
+        'https://playground.4geeks.com/apis/fake/contact/agenda/',
         {
           method: 'GET',
         }
@@ -46,7 +46,7 @@ export const Contact = ({
   const handleConfirmDelete = async () => {
     try {
       const response = await fetch(
-        `https://playground.4geeks.com/apis/fake/contact/${id}`,
+        `https://playground.4geeks.com/apis/fake/contact/`,
         {
           method: 'DELETE',
         }
@@ -75,7 +75,7 @@ export const Contact = ({
     const fetchInitialContactList = async () => {
       try {
         const response = await fetch(
-          'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
+          'https://playground.4geeks.com/apis/fake/contact/',
           {
             method: 'GET',
           }
