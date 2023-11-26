@@ -7,6 +7,7 @@ import '../../styles/demo.css';
 
 export const UpdateContact = () => {
   const { store, actions } = useContext(Context);
+  const [contactDetails, setContactDetails] = useState();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -20,6 +21,30 @@ export const UpdateContact = () => {
   const handleFirstNameInput = (e) => {
     setFirstName(e.target.value);
   };
+
+  useEffect(() => {
+    const fetchContactDetails = async () => {
+      try {
+        const response = await fetch(
+          `https://playground.4geeks.com/apis/fake/contact/${id}`,
+          {
+            method: 'GET',
+          }
+        );
+
+        if (response.ok) {
+          const contact = await response.json();
+          setContactDetails(contact);
+        } else {
+          console.error('Failed to fetch contact details from API');
+        }
+      } catch (error) {
+        console.error('Error fetching contact details:', error);
+      }
+    };
+
+    fetchContactDetails();
+  }, []);
 
   const handleLastNameInput = (e) => {
     setLastName(e.target.value);
