@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,14 +23,77 @@ export const Contact = ({
     setShowDeleteConfirmation(true);
   };
 
-  const handleConfirmDelete = () => {
-    onDelete();
-    setShowDeleteConfirmation(false);
+  const updateContactList = async () => {
+    try {
+      const response = await fetch(
+        'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
+        {
+          method: 'GET',
+        }
+      );
+
+      if (response.ok) {
+        const updatedContactList = await response.json();
+        console.log('Updated Contact List:', updatedContactList);
+      } else {
+        console.error('Failed to update contact list from API');
+      }
+    } catch (error) {
+      console.error('Error updating contact list:', error);
+    }
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      const response = await fetch(
+        `https://playground.4geeks.com/apis/fake/contact/${id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+
+      if (response.ok) {
+        onDelete();
+
+        await updateContactList();
+
+        setShowDeleteConfirmation(false);
+      } else {
+        console.error('Failed to delete contact from API');
+      }
+    } catch (error) {
+      console.error('Error deleting contact:', error);
+    }
   };
 
   const handleCancelDelete = () => {
     setShowDeleteConfirmation(false);
   };
+
+  useEffect(() => {
+    console.log('Effect triggered');
+    const fetchInitialContactList = async () => {
+      try {
+        const response = await fetch(
+          'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
+          {
+            method: 'GET',
+          }
+        );
+
+        if (response.ok) {
+          const initialContactList = await response.json();
+          console.log('Initial Contact List:', initialContactList);
+        } else {
+          console.error('Failed to fetch initial contact list from API');
+        }
+      } catch (error) {
+        console.error('Error fetching initial contact list:', error);
+      }
+    };
+
+    fetchInitialContactList();
+  }, []);
 
   return (
     <div className="text-center mt-5">
@@ -80,7 +143,7 @@ export const Contact = ({
 
       <Modal show={showDeleteConfirmation} onHide={handleCancelDelete}>
         <Modal.Header closeButton>
-          <Modal.Title>Delete Confirmation</Modal.Title>
+          <Modal.Title>Delete Confirmation‼️🚨</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>Are you sure you want to delete the contact?</p>
