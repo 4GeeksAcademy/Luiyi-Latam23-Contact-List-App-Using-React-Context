@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
-
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Context } from '../store/appContext';
-
 import '../../styles/demo.css';
 
 export const UpdateContact = () => {
   const { store, actions } = useContext(Context);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [contactDetails, setContactDetails] = useState({
     firstName: '',
     lastName: '',
@@ -14,9 +15,6 @@ export const UpdateContact = () => {
     address: '',
     phone: '',
   });
-
-  const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     const fetchContactDetails = async () => {
@@ -39,10 +37,12 @@ export const UpdateContact = () => {
       }
     };
 
-    fetchContactDetails();
-  }, []);
+    if (id) {
+      fetchContactDetails();
+    }
+  }, [id]);
 
-  const handleFormSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -68,7 +68,48 @@ export const UpdateContact = () => {
     };
 
     console.log('Saving updated contact:', updatedContact);
-    actions.addContact(updatedContact);
+
+    try {
+      if (id) {
+        const response = await fetch(
+          `https://playground.4geeks.com/apis/fake/contact/${id}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedContact),
+          }
+        );
+
+        if (response.ok) {
+          console.log('Contact updated successfully!');
+        } else {
+          console.error('Error updating contact:', response.statusText);
+        }
+      } else {
+        const response = await fetch(
+          'https://playground.4geeks.com/apis/fake/contact/',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedContact),
+          }
+        );
+
+        if (response.ok) {
+          console.log('Contact added successfully!');
+        } else {
+          console.error('Error adding new contact:', response.statusText);
+        }
+      }
+
+      navigate('/');
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -81,7 +122,7 @@ export const UpdateContact = () => {
 
   return (
     <div className="container bg-light">
-      <form className="row g-3" onSubmit={handleFormSubmit}>
+      <form className="row g-3" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <label htmlFor="inputPassword4" className="form-label">
             Name
@@ -111,13 +152,13 @@ export const UpdateContact = () => {
           />
         </div>
         <div className="col-md-12">
-          <label htmlFor="inputEmail4" className="form-label">
+          <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
             type="email"
             className="form-control"
-            id="inputEmail4"
+            id="email"
             value={contactDetails ? contactDetails.email : ''}
             placeholder="Enter email"
             onChange={handleInputChange}
@@ -126,13 +167,13 @@ export const UpdateContact = () => {
         </div>
 
         <div className="col-12">
-          <label htmlFor="inputAddress" className="form-label">
+          <label htmlFor="address" className="form-label">
             Address
           </label>
           <input
             type="text"
             className="form-control"
-            id="inputAddress"
+            id="address"
             value={contactDetails ? contactDetails.address : ''}
             placeholder="Enter address"
             onChange={handleInputChange}
@@ -141,59 +182,26 @@ export const UpdateContact = () => {
         </div>
 
         <div className="col-md-12">
-          <label htmlFor="inputPhone" className="form-label">
+          <label htmlFor="phone" className="form-label">
             Phone Number
           </label>
           <input
             type="tel"
             className="form-control"
-            id="inputPhone"
+            id="phone"
             value={contactDetails ? contactDetails.phone : ''}
             placeholder="Enter your phone number"
             onChange={handleInputChange}
             required
           />
         </div>
-
         <div className="col-12">
           <button type="submit" className="btn btn-success w-100">
             Save contact
           </button>
         </div>
       </form>
-      {/* {
-        <ul className="list-group">
-          {store.demo.map((item, index) => {
-            return (
-              <li
-                key={index}
-                className="list-group-item d-flex justify-content-between"
-                style={{ background: item.background }}
-              >
-                <Link to={'/single/' + index}>
-                  <span>Link to: {item.title}</span>
-                </Link>
-                {
-                  // Conditional render example
-                  // Check to see if the background is orange, if so, display the message
-                  item.background === 'orange' ? (
-                    <p style={{ color: item.initial }}>
-                      Check store/flux.js scroll to the actions to see the code
-                    </p>
-                  ) : null
-                }
-                <button
-                  className="btn btn-success"
-                  onClick={() => actions.changeColor(index, 'orange')}
-                >
-                  Change Color1
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      }
-      <br /> */}
+
       <Link to="/">
         <button className="btn btn-link">Back to Contact List</button>
       </Link>

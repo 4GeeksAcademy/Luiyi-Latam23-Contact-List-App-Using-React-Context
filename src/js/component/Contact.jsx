@@ -26,7 +26,7 @@ export const Contact = ({
   const updateContactList = async () => {
     try {
       const response = await fetch(
-        'https://playground.4geeks.com/apis/fake/contact/agenda/',
+        'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
         {
           method: 'GET',
         }
@@ -75,7 +75,7 @@ export const Contact = ({
     const fetchInitialContactList = async () => {
       try {
         const response = await fetch(
-          'https://playground.4geeks.com/apis/fake/contact/',
+          'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
           {
             method: 'GET',
           }
