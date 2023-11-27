@@ -97,9 +97,9 @@ export const Contact = ({
 
   return (
     <div className="text-center mt-5">
-      <div className="card mb-3">
+      <div className="card mb-3 bg-light">
         <div className="row g-0">
-          <div className="col-md-4 d-flex justify-content-center align-items-center">
+          <div className="col-md-4 d-flex justify-content-center align-items-center ">
             <img src={imgUrl} className="cardImage" alt="..." />
           </div>
           <div className="col-md-8">

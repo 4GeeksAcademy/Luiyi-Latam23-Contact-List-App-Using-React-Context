@@ -35,7 +35,7 @@ export const Contacts = () => {
   }, []);
 
   return (
-    <div>
+    <div className="card-container">
       {contacts.map((item) => (
         <Contact
           key={item.id}

@@ -1,5 +1,13 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
-  width: 70%;
+  /* width: 70%; */
   max-width: 600px;
   min-width: 410px;
 }
@@ -15,10 +23,25 @@
   margin-left: 8px;
 }
 
+.card-container {
+}
+
 .cardImage {
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+
+.fa-map-marker {
+  color: burlywood;
+}
+
+.fa-phone {
+  color: rgb(99, 125, 60);
+}
+
+.fa-envelope {
+  color: rgb(76, 69, 172);
 }
 
 .card-edit-trash-icons-container {
@@ -31,6 +54,14 @@
 .edit-delete-icons {
   font-size: 2.5rem;
   cursor: pointer;
+}
+
+.fa-pen-square {
+  color: rgb(11, 100, 11);
+}
+
+.fa-trash {
+  color: rgb(147, 15, 15);
 }
 
 .delete-confirmation-box {
