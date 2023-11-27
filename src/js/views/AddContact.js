@@ -59,7 +59,7 @@ export const AddContact = () => {
 
       if (store.contacts.length === 0) {
         const response = await fetch(
-          'https://playground.4geeks.com/apis/fake/contact/',
+          'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
           {
             method: 'POST',
             headers: {
@@ -76,7 +76,7 @@ export const AddContact = () => {
         updatedContacts = await response.json();
       } else {
         const response = await fetch(
-          'https://playground.4geeks.com/apis/fake/contact/',
+          'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
           {
             method: 'PUT',
             headers: {

@@ -138,7 +138,7 @@ export const UpdateContact = () => {
           />
         </div>
         <div className="col-md-6">
-          <label htmlFor="inputPassword4" className="form-label">
+          <label htmlFor="lastName" className="form-label">
             Last name
           </label>
           <input
