@@ -102,9 +102,9 @@ export const UpdateContact = () => {
         );
 
         if (response.ok) {
-          console.log('Contact added successfully!');
+          console.log('Contact updated successfully!');
         } else {
-          console.error('Error adding new contact:', response.statusText);
+          console.error('Error updating new contact:', response.statusText);
         }
       }
 

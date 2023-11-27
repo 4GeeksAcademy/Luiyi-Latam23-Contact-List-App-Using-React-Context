@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Context } from '../store/appContext';
 
@@ -19,6 +19,7 @@ export const AddContact = () => {
   });
 
   const [contacts, setContacts] = useState([]);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -104,6 +105,7 @@ export const AddContact = () => {
     } catch (error) {
       console.log(error);
     }
+    navigate('/');
   };
 
   const getContacts = async () => {
