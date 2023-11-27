@@ -28,7 +28,9 @@ export const UpdateContact = () => {
 
         if (response.ok) {
           const contact = await response.json();
-          setContactDetails(contact);
+          const [firstName, lastName] = contact.full_name.split(' ');
+          const newContact = { ...contact, firstName, lastName };
+          setContactDetails(newContact);
         } else {
           console.error('Failed to fetch contact details from API');
         }
@@ -58,12 +60,12 @@ export const UpdateContact = () => {
     }
 
     const updatedContact = {
-      full_Name: `${contactDetails.firstName} ${contactDetails.lastName}`,
+      full_name: `${contactDetails.firstName} ${contactDetails.lastName}`,
       address: contactDetails.address,
       email: contactDetails.email,
       phone: contactDetails.phone,
-      imgUrl:
-        'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      // imgUrl:
+      //   'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
       agenda_slug: 'luiyi-latam23-agenda',
     };
 
@@ -124,7 +126,7 @@ export const UpdateContact = () => {
     <div className="container bg-light">
       <form className="row g-3" onSubmit={handleSubmit}>
         <div className="col-md-6">
-          <label htmlFor="inputPassword4" className="form-label">
+          <label htmlFor="firstName" className="form-label">
             Name
           </label>
           <input

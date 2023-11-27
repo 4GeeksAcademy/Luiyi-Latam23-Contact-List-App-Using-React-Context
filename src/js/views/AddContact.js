@@ -43,12 +43,12 @@ export const AddContact = () => {
     }
 
     const newContact = {
-      full_Name: `${formData.firstName} ${formData.lastName}`,
+      full_name: `${formData.firstName} ${formData.lastName}`,
       email: formData.email,
       address: formData.address,
       phone: formData.phone,
-      imgUrl:
-        'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      // imgUrl:
+      //   'https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1200',
       agenda_slug: 'luiyi-latam23-agenda',
     };
 
@@ -59,7 +59,7 @@ export const AddContact = () => {
 
       if (store.contacts.length === 0) {
         const response = await fetch(
-          'https://playground.4geeks.com/apis/fake/contact/agenda/luiyi-latam23-agenda',
+          'https://playground.4geeks.com/apis/fake/contact/',
           {
             method: 'POST',
             headers: {
