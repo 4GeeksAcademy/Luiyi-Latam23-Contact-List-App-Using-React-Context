@@ -111,10 +111,12 @@ export const Contact = ({
                       className="fas fa-pen-square p-2"
                       onClick={handleEditContactBtn}
                     ></i>
-                    <i
-                      className="fa fa-trash p-2"
-                      onClick={handleDeleteContactBtn}
-                    ></i>
+                    <span className="trash-wrapper">
+                      <i
+                        className="fa fa-trash p-2"
+                        onClick={handleDeleteContactBtn}
+                      ></i>
+                    </span>
                   </span>
                 </div>
                 <div>
